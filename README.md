@@ -1,12 +1,91 @@
-# React + Vite
+# ⏳ Aesthetic Pomodoro Timer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A beautiful and functional Pomodoro Timer app built with **React** and **Tailwind CSS**. It helps you stay focused with ambient background audio, background video, and customizable session durations.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎯 Classic Pomodoro technique (Focus + Break)
+- 🕒 Customizable focus and break durations
+- 🔁 Animated progress ring
+- 🎵 Ambient sound with **mute** and **volume control**
+- 🎬 Fullscreen changeable background videos
+- ✅ Task list with add/delete functionality
+- 📊 Pomodoro session counter
+- 🧘 Smooth UI transitions
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![Screenshot 2025-04-16 190721](https://github.com/user-attachments/assets/a62debd1-766d-4370-be88-bf944622ffeb)
+
+
+## 🛠️ Tech Stack
+
+- React (Vite)
+- Tailwind CSS
+- HTML5 Audio & Video
+- Local State Management (`useState`, `useEffect`)
+
+## 📦 Getting Started
+
+### Prerequisites
+
+- Node.js ≥ 16
+- npm or yarn
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/pomodoro-timer.git
+cd pomodoro-timer
+npm install
+```
+
+### Run the App
+
+```bash
+npm run dev
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+## 🔧 Customization
+
+- Change background video: Replace `src/assets/bg-video.mp4`
+- Change ambient sound: Replace `src/assets/ambient.mp3`
+- Modify bell sound: Replace `public/assets/bell.wav`
+- Adjust default durations: Modify `durations` in `App.jsx`
+
+## 📁 File Structure
+
+```
+src/
+├── assets/                # Background video & ambient sound
+├── components/
+│   ├── Controls.jsx
+│   ├── ProgressRing.jsx
+│   ├── SettingsModal.jsx
+│   ├── TaskList.jsx
+│   └── Timer.jsx
+├── App.jsx
+├── main.jsx
+├── index.css
+```
+
+## 🤝 Contributing
+
+Feel free to fork the repo and submit pull requests! Open issues if you find bugs or have feature suggestions.
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## 🙏 Acknowledgements
+
+- [Pixabay](https://pixabay.com/) for free background videos and ambient sounds
+
+---
+
+Stay focused. Stay calm. ✨
