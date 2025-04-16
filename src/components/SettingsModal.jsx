@@ -1,40 +1,100 @@
-// components/SettingsModal.jsx
-import React, { useState } from "react";
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function SettingsModal({ isOpen, onClose, durations, setDurations }) {
-  const [focus, setFocus] = useState(durations.focus);
-  const [breakTime, setBreak] = useState(durations.break);
-
-  if (!isOpen) return null;
-
-  const handleSave = () => {
-    setDurations({ focus, break: breakTime });
-    onClose();
+export default function SettingsModal({
+  isOpen,
+  onClose,
+  durations,
+  setDurations,
+  videoSource,
+  setVideoSource,
+  videoOptions,
+}) {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDurations((prev) => ({
+      ...prev,
+      [name]: Number(value),
+    }));
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 flex justify-center items-center z-50">
-      <div className="bg-slate-400 text-black rounded-xl p-6 w-[90%] max-w-md shadow-2xl">
-        <h2 className="text-xl font-semibold mb-4">Customize Durations</h2>
-        <label className="block mb-2">Focus Duration (mins)</label>
-        <input
-          type="number"
-          value={focus}
-          onChange={(e) => setFocus(Number(e.target.value))}
-          className="w-full p-2 mb-4 rounded bg-gray-100"
-        />
-        <label className="block mb-2">Break Duration (mins)</label>
-        <input
-          type="number"
-          value={breakTime}
-          onChange={(e) => setBreak(Number(e.target.value))}
-          className="w-full p-2 mb-4 rounded bg-gray-100"
-        />
-        <div className="flex justify-end gap-2 mt-4">
-          <button onClick={onClose} className="px-4 py-2 bg-gray-300 rounded">Cancel</button>
-          <button onClick={handleSave} className="px-4 py-2 bg-blue-500 text-white rounded">Save</button>
-        </div>
-      </div>
-    </div>
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex justify-center items-center px-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <motion.div
+            className="bg-white/10 p-6 rounded-2xl shadow-lg w-full max-w-md text-white"
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.95, opacity: 0 }}
+          >
+            <h2 className="text-2xl font-bold mb-4">Settings</h2>
+
+            {/* Focus Duration */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1">
+                Focus Duration (min)
+              </label>
+              <input
+                type="number"
+                name="focus"
+                value={durations.focus}
+                onChange={handleChange}
+                className="w-full px-4 py-2 rounded-lg bg-white/10 text-white focus:outline-none"
+              />
+            </div>
+
+            {/* Break Duration */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1">
+                Break Duration (min)
+              </label>
+              <input
+                type="number"
+                name="break"
+                value={durations.break}
+                onChange={handleChange}
+                className="w-full px-4 py-2 rounded-lg bg-white/10 text-white focus:outline-none"
+              />
+            </div>
+
+            {/* Background Video Selector */}
+            <div className="mb-4">
+              <label className="block text-sm font-medium mb-1">
+                Background Video
+              </label>
+              <select
+                value={Object.keys(videoOptions).find(
+                  (key) => videoOptions[key] === videoSource
+                )} // Select the correct key
+                onChange={(e) => setVideoSource(videoOptions[e.target.value])}
+                className="w-full px-4 py-2 rounded-lg bg-white/10 text-white focus:outline-none"
+              >
+                {Object.entries(videoOptions).map(([key, url]) => (
+                  <option key={key} value={key} className="text-black">
+                    {key}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Close Button */}
+            <div className="flex justify-end mt-6">
+              <button
+                onClick={onClose}
+                className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-xl text-sm"
+              >
+                Close
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

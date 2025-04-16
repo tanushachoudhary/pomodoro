@@ -3,7 +3,12 @@ import React, { useEffect, useState, useRef } from "react";
 import Timer from "./components/Timer";
 import Controls from "./components/Controls";
 import SettingsModal from "./components/SettingsModal";
-import vid from "./assets/bg-video.mp4";
+import vid1 from "./assets/bg-video.mp4";
+import vid2 from "./assets/vid2.mp4";
+import vid3 from "./assets/vid3.mp4";
+import vid4 from "./assets/vid4.mp4";
+import vid5 from "./assets/vid5.mp4";
+import vid6 from "./assets/vid6.mp4";
 import aud from "./assets/ambient.mp3";
 import TaskList from "./components/TaskList";
 
@@ -17,29 +22,94 @@ export default function App() {
   const [volume, setVolume] = useState(0.5);
 
   const handleReset = () => setResetSignal((prev) => prev + 1);
-  useEffect(() => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio(aud);
-      audioRef.current.loop = true;
-      audioRef.current.volume = volume;
-      audioRef.current.muted = isMuted;
-      audioRef.current.play();
-    }
+  const videoOptions = {
+    Waterfall: vid1,
+    Fireplace: vid2,
+    Kaleidoscope: vid3,
+    Nebula: vid4,
+    Nebula: vid5,
+    Nebula: vid6,
+  };
 
-    // Cleanup on unmount
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
+  const [videoSource, setVideoSource] = useState(videoOptions.Waterfall);
+  const handleMuteToggle = () => {
+    setIsMuted((prev) => {
+      const newMuted = !prev;
+      if (!newMuted) {
+        // Play only after unmuting and user interaction
+        audioRef.current
+          ?.play()
+          .catch((err) => console.warn("Audio play error:", err.message));
+      } else {
+        audioRef.current?.pause();
       }
+      return newMuted;
+    });
+  };
+  useEffect(() => {
+    const audio = new Audio(aud);
+    audio.loop = true;
+    audio.volume = volume;
+    audio.muted = isMuted;
+    audioRef.current = audio;
+
+    const handleUserInteraction = () => {
+      if (!isMuted) {
+        audio
+          .play()
+          .catch((err) => console.warn("Audio play error:", err.message));
+      }
+      document.removeEventListener("click", handleUserInteraction);
+    };
+
+    document.addEventListener("click", handleUserInteraction);
+
+    return () => {
+      document.removeEventListener("click", handleUserInteraction);
+      audio.pause();
     };
   }, []);
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
-      audioRef.current.muted = isMuted;
     }
-  }, [volume, isMuted]);
+  }, [volume]);
+
+  // useEffect(() => {
+  //   if (!audioRef.current) {
+  //     audioRef.current = new Audio(aud);
+  //     audioRef.current.loop = true;
+  //     audioRef.current.volume = volume;
+  //     audioRef.current.muted = isMuted;
+  //     audioRef.current.play();
+  //     if (!isMuted) {
+  //       // Try to play on interaction
+  //       audioRef.current
+  //         .play()
+  //         .catch((err) => console.warn("Audio play error:", err.message));
+  //     }
+  //   }
+
+  //   // Cleanup on unmount
+  //   return () => {
+  //     if (audioRef.current) {
+  //       audioRef.current.pause();
+  //     }
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   if (audioRef.current) {
+  //     audioRef.current.volume = volume;
+  //     // audioRef.current.muted = isMuted;
+  //   }
+  // }, [volume]);
 
   return (
     <div className="relative w-full h-screen overflow-hidden text-white font-sans">
@@ -48,16 +118,18 @@ export default function App() {
         autoPlay
         loop
         muted
+        key={videoSource}
         className="absolute w-full h-full object-cover -z-10"
       >
-        <source src={vid} type="video/mp4" />
+        <source src={videoSource} type="video/mp4" />
       </video>
 
       {/* Top Right Buttons */}
       <div className="absolute top-4 right-4 z-50 flex flex-col gap-2 items-end">
         <div className="flex gap-2">
           <button
-            onClick={() => setIsMuted((prev) => !prev)}
+            // onClick={() => setIsMuted((prev) => !prev)}
+            onClick={handleMuteToggle}
             className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-xl text-sm"
           >
             {isMuted ? "Unmute" : "Mute"}
@@ -78,7 +150,6 @@ export default function App() {
           >
             {showTasks ? "Hide Tasks" : "Show Tasks"}
           </button>
-          
         </div>
       </div>
 
@@ -109,6 +180,9 @@ export default function App() {
         onClose={() => setIsSettingsOpen(false)}
         durations={durations}
         setDurations={setDurations}
+        videoSource={videoSource}
+        setVideoSource={setVideoSource}
+        videoOptions={videoOptions}
       />
     </div>
   );
