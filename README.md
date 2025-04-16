@@ -8,7 +8,7 @@ A beautiful and functional Pomodoro Timer app built with **React** and **Tailwin
 - 🕒 Customizable focus and break durations
 - 🔁 Animated progress ring
 - 🎵 Ambient sound with **mute** and **volume control**
-- 🎬 Fullscreen background video
+- 🎬 Fullscreen changeable background videos
 - ✅ Task list with add/delete functionality
 - 📊 Pomodoro session counter
 - 🧘 Smooth UI transitions
