@@ -89,4 +89,3 @@ This project is licensed under the [MIT License](LICENSE).
 ---
 
 Stay focused. Stay calm. ✨
-```
