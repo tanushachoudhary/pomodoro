@@ -27,8 +27,8 @@ export default function App() {
     Fireplace: vid2,
     Kaleidoscope: vid3,
     Nebula: vid4,
-    Nebula: vid5,
-    Nebula: vid6,
+    Magic: vid5,
+    Lights: vid6,
   };
 
   const [videoSource, setVideoSource] = useState(videoOptions.Waterfall);
