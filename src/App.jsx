@@ -3,11 +3,11 @@ import React, { useEffect, useState, useRef } from "react";
 import Timer from "./components/Timer";
 import Controls from "./components/Controls";
 import SettingsModal from "./components/SettingsModal";
-import vid2 from "./assets/vid2.mp4";
-import vid3 from "./assets/vid3.mp4";
-import vid4 from "./assets/vid4.mp4";
-import vid5 from "./assets/vid5.mp4";
-import vid6 from "./assets/vid6.mp4";
+// import vid2 from "./assets/vid2.mp4";
+// import vid3 from "./assets/vid3.mp4";
+// import vid4 from "./assets/vid4.mp4";
+// import vid5 from "./assets/vid5.mp4";
+// import vid6 from "./assets/vid6.mp4";
 import aud from "./assets/ambient.mp3";
 import TaskList from "./components/TaskList";
 
