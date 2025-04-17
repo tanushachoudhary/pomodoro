@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from "react";
 import Timer from "./components/Timer";
 import Controls from "./components/Controls";
 import SettingsModal from "./components/SettingsModal";
-import vid1 from "./assets/bg-video.mp4";
 import vid2 from "./assets/vid2.mp4";
 import vid3 from "./assets/vid3.mp4";
 import vid4 from "./assets/vid4.mp4";
@@ -23,7 +22,8 @@ export default function App() {
 
   const handleReset = () => setResetSignal((prev) => prev + 1);
   const videoOptions = {
-    Waterfall: vid1,
+    Waterfall:
+      "https://res.cloudinary.com/dk3p0uh4n/video/upload/v1744860415/bg-video_x7kcjr.mp4",
     Fireplace: vid2,
     Kaleidoscope: vid3,
     Nebula: vid4,
