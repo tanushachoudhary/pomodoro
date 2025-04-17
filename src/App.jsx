@@ -24,11 +24,11 @@ export default function App() {
   const videoOptions = {
     Waterfall:
       "https://res.cloudinary.com/dk3p0uh4n/video/upload/v1744860415/bg-video_x7kcjr.mp4",
-    Fireplace: vid2,
-    Kaleidoscope: vid3,
-    Nebula: vid4,
-    Magic: vid5,
-    Lights: vid6,
+    Fireplace: "https://res.cloudinary.com/dk3p0uh4n/video/upload/v1744864528/vid2_gizqri.mp4",
+    Kaleidoscope: "https://res.cloudinary.com/dk3p0uh4n/video/upload/v1744866700/vid3_myw7hm.mp4",
+    Nebula: "https://res.cloudinary.com/dk3p0uh4n/video/upload/v1744867261/vid4_1_g2tred.mp4",
+    Magic: "https://res.cloudinary.com/dk3p0uh4n/video/upload/v1744866678/vid5_olfuwl.mp4",
+    Lights: "https://res.cloudinary.com/dk3p0uh4n/video/upload/v1744866670/vid6_bdumtv.mp4",
   };
 
   const [videoSource, setVideoSource] = useState(videoOptions.Waterfall);
