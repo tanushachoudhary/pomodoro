@@ -2,6 +2,9 @@
 
 A beautiful and functional Pomodoro Timer app built with **React** and **Tailwind CSS**. It helps you stay focused with ambient background audio, background video, and customizable session durations.
 
+https://github.com/user-attachments/assets/b47ba1c8-92da-449b-80de-c07fc1937147
+
+
 ## 🚀 Features
 
 - 🎯 Classic Pomodoro technique (Focus + Break)
@@ -12,10 +15,6 @@ A beautiful and functional Pomodoro Timer app built with **React** and **Tailwin
 - ✅ Task list with add/delete functionality
 - 📊 Pomodoro session counter
 - 🧘 Smooth UI transitions
-
-
-![Screenshot 2025-04-16 190721](https://github.com/user-attachments/assets/a62debd1-766d-4370-be88-bf944622ffeb)
-
 
 ## 🛠️ Tech Stack
 
